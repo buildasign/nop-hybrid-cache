@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "Nop Hybrid Cache",
+  "SystemName": "Misc.HybridCache",
+  "Version": "1.0",
+  "SupportedVersions": [ "4.20" ],
+  "Author": "BuildASign team",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Misc.HybridCache.dll",
+  "Description": "This plugin provides an implementation of a hybrid cache - local cache with Redis backplane."
+}

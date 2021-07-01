@@ -1,0 +1,76 @@
+﻿@using BAS.Nop.Plugin.Misc.HybridCache.Models
+@model BAS.Nop.Plugin.Misc.HybridCache.Models.ConfigurationModel
+@{
+    Layout = "_ConfigurePlugin";
+}
+
+<form asp-controller="HybridCacheConfiguration" asp-action="Configure" method="post">
+    <div class="panel-group">
+        <div class="panel">
+            <div class="panel-body">
+                <h1>Hybrid Cache Configuration</h1>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <nop-label asp-for="ShowCacheStats" />
+                    </div>
+                    <div class="col-md-10">
+                        <nop-editor asp-for="ShowCacheStats" />
+                        <span asp-validation-for="ShowCacheStats"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <nop-label asp-for="KeyToSearch" />
+                    </div>
+                    <div class="col-md-10">
+                        <nop-editor asp-for="KeyToSearch" />
+                        <span asp-validation-for="KeyToSearch"></span>
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <div class="col-md-9">
+                        <input type="submit" name="save" class="btn bg-blue" value="Display" />
+                    </div>
+                </div>
+                <hr />
+                @if (Model.ShowCacheStats)
+                {
+                    <h3>Cache Stats</h3>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <table class="table table-bordered table-hover table-striped dataTable no-footer" width="100%" role="grid">
+                                <thead>
+                                    <tr role="row">
+                                        <th>Key</th>
+                                        <th>Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var reg in Model.CacheStats)
+                                    { var showLogsLink = reg.Key == "Local Results:";
+                                        <tr role="row">
+                                            <td>@reg.Key</td>
+                                            <td>@reg.Value 
+                                            @if (showLogsLink) 
+                                            {
+                                                <a href="/Admin/Log/List">(Here)</a>
+                                            }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</form>
+
